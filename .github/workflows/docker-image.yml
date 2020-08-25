@@ -14,3 +14,14 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag wagtail-playground:$(date +%s)
+      # Login to ACR
+      - uses: azure/docker-login@v1
+      - name: Azure Container registry
+        with:
+          login-server: repodev1.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME_SUBJE }}
+          password: ${{ secrets.REGISTRY_PASSWORD_SUBJE }}
+      # Docker build and push to a Azure Container registry (ACR)
+      - run: |
+          docker build . -t repodev1.azurecr.io/k8smaven:${{ github.run_id }}
+          docker push repodev1.azurecr.io/k8smaven:${{ github.run_id }}

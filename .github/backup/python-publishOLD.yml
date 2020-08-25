@@ -3,8 +3,8 @@
 
 name: Upload Python Package
 
-on:
-  push:
+# on:
+#   push:
 
 jobs:
   deploy:
@@ -42,15 +42,3 @@ jobs:
           docker run --rm -d --name test_container -p 8000:8000 wagtail-playground:0.0.3.RELEASE
           docker run --link test_container:test_container waisbrot/wait
           curl --fail http://localhost:8000
-
-      # Login to ACR
-      - uses: azure/docker-login@v1
-      - name: Azure Container registry
-        with:
-          login-server: wagtailtest.azurecr.io
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
-      # Docker build and push to a Azure Container registry (ACR)
-      - run: |
-          docker build . -t wagtailtest.azurecr.io/wagtailk8s:${{ github.run_id }}
-          docker push wagtailtest.azurecr.io/wagtailk8s:${{ github.run_id }}
