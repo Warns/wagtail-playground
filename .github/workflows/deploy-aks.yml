@@ -1,0 +1,25 @@
+name: Deploy on Azure K8s
+on: push
+jobs:
+  dev:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/aks-set-context@v1
+        with:
+          creds: "${{ secrets.AKS_CREDS }}"
+          cluster-name: subje-playground
+          resource-group: cloud-shell-storage-westeurope
+
+      # Image pull from ACR
+      - uses: azure/k8s-create-secret@v1
+        with:
+          container-registry-url: wagtailtest.azurecr.io
+          acr-username: $$ {{ secrets.ACR_USERNAME }}
+          acr-password: $$ {{ secrets.ACR_PASSWORD }}
+          namespace: default
+          secret-name: acr-secret
+      - uses: azure/k8s-deploy@v1
+        with:
+          namespace: default
