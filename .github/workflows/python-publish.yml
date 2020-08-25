@@ -43,7 +43,7 @@ jobs:
       #     curl --fail http://localhost:8000
       # Login to ACR
       - name: Azure Container registry
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
           azure/docker-login@v1
         with:
           login-server: wagtailtest.azurecr.io
