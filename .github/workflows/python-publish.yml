@@ -27,10 +27,7 @@ jobs:
         run: |
           python setup.py sdist
 
-  # Build docker image and test http server
-  deploy-to-acr:
-    runs-on: ubuntu-latest
-    steps:
+      # Build docker image and test http server
       # - uses: actions/checkout@v2
       # - name: Build the Docker image
       #   # run: docker build . --file Dockerfile --tag wagtail-playground:$(date +%s)
