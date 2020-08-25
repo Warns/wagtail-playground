@@ -4,19 +4,8 @@
 from setuptools import setup
 
 setup(
-    name='mysite',
-    install_requires=[
-        'Django>=3.1,<3.2',
-        'wagtail>=2.10,<2.11',
-    ],
-    packages=[
-        'home',
-        'mysite',
-        'search',
-        'home.migrations',
-        'mysite.settings',
-    ],
-    py_modules=[
-        'manage',
-    ],
+    name="wagtail",
+    install_requires=["Django>=3.1,<3.2", "wagtail>=2.10,<2.11",],
+    packages=["home", "mysite", "search", "home.migrations", "mysite.settings",],
+    py_modules=["manage",],
 )
