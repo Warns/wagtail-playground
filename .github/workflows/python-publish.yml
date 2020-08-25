@@ -43,7 +43,8 @@ jobs:
       #     curl --fail http://localhost:8000
       # Login to ACR
       - name: Azure Container registry
-        uses: azure/docker-login@v1
+      - uses: actions/checkout@v2
+      - uses: azure/docker-login@v1
         with:
           login-server: wagtailtest.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
@@ -51,7 +52,7 @@ jobs:
       # Docker build and push to a Azure Container registry (ACR)
       - run: |
 
-          docker build --file .././Dockerfile -t wagtailtest.azurecr.io/wagtail-playground:${{ github.run_id }} .
+          docker build -t wagtailtest.azurecr.io/wagtail-playground:${{ github.run_id }} .
           docker push wagtailtest.azurecr.io/wagtail-playground:${{ github.run_id }}
 
 #          docker build . -t wagtailtest.azurecr.io/wagtailk8s:${{ github.run_id }}
