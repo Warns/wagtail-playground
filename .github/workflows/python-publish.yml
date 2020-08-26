@@ -69,6 +69,8 @@ jobs:
       - uses: azure/k8s-deploy@v1
         with:
           namespace: default
+          imagepullsecrets: |
+            wagtail-secret
   # # Build and test
   # - name: Build the Docker image and test http
   #   # run: docker build . --file Dockerfile --tag wagtail-playground:$(date +%s)
