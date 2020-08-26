@@ -52,7 +52,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: azure/aks-set-context@v1
         with:
-          creds: "${{ secrets.AKS_CREDS }}"
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
           cluster-name: subje-playground
           resource-group: cloud-shell-storage-westeurope
 
