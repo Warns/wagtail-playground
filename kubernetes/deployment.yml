@@ -29,9 +29,9 @@ spec:
         name: wagtail-app
     spec:
       imagePullSecrets:
-        - name: acr-secret
+        - name: wagtail-secret
       containers:
-        - image: wagtailtest.azurecr.io/wagtail-playground:${{ github.run_id }}
+        - image: wagtailtest.azurecr.io/wagtail-app:${{ github.run_id }}
           name: wagtail-GA-container
           resources:
             requests:
