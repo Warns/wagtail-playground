@@ -39,6 +39,8 @@ jobs:
           login-server: wagtailtest.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
+          imagePullSecrets: |
+            wagtail-secret
       # Docker build and push to a Azure Container registry (ACR)
       - run: |
           docker build -t wagtailtest.azurecr.io/wagtail-playground:${{ github.run_id }} .
