@@ -60,8 +60,8 @@ jobs:
       - uses: azure/k8s-create-secret@v1
         with:
           container-registry-url: wagtailtest.azurecr.io
-          acr-username: $$ {{ secrets.AZURE_CREDENTIALS }}
-          acr-password: $$ {{ secrets.AZURE_CREDENTIALS }}
+          acr-username: $$ {{ secrets.ACR_USERNAME }}
+          acr-password: $$ {{ secrets.ACR_PASSWORD }}
           namespace: default
           secret-name: acr-secret
       - uses: azure/k8s-deploy@v1
