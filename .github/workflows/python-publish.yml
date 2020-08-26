@@ -65,7 +65,7 @@ jobs:
           acr-username: $$ {{ secrets.ACR_USERNAME }}
           acr-password: $$ {{ secrets.ACR_PASSWORD }}
           namespace: default
-          secret-name: acr-secret
+          secret-name: wagtail-secret
       - uses: azure/k8s-deploy@v1
         with:
           namespace: default
