@@ -58,7 +58,6 @@ jobs:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
           cluster-name: subje-playground
           resource-group: cloud-shell-storage-westeurope
-          secret-name: subje-secret
 
       # Image pull from ACR.
       - uses: azure/k8s-create-secret@v1
