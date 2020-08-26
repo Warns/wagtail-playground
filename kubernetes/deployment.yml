@@ -29,7 +29,7 @@ spec:
         name: wagtail-app
     spec:
       imagePullSecrets:
-        - name: subje-secret
+        - name: wagtail-secret
       containers:
         - image: wagtailtest.azurecr.io/wagtail-app:${{ github.run_id }}
           name: wagtail-GA-container
