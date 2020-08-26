@@ -66,13 +66,17 @@ jobs:
           acr-username: $$ {{ secrets.ACR_USERNAME }}
           acr-password: $$ {{ secrets.ACR_PASSWORD }}
           namespace: default
-          secret-name: wagtail-secret
-
+          secret-name: acr-secret
+      # Deploy to AKS
       - uses: azure/k8s-deploy@v1
         with:
           namespace: default
+          manifests: |
+            kubernetes/deployment.yml
+          images: |
+            wagtailtest.azurecr.io/k8smaven:${{ github.run_id }}
           imagepullsecrets: |
-            wagtail-secret
+            acr-secret
   # # Build and test
   # - name: Build the Docker image and test http
   #   # run: docker build . --file Dockerfile --tag wagtail-playground:$(date +%s)
