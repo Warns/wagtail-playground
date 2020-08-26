@@ -40,7 +40,8 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
           imagePullSecrets: |
-            wagtail-secret
+            subje-secret
+
       # Docker build and push to a Azure Container registry (ACR)
       - run: |
           docker build -t wagtailtest.azurecr.io/wagtail-app:${{ github.run_id }} .
@@ -59,6 +60,7 @@ jobs:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
           cluster-name: subje-playground
           resource-group: cloud-shell-storage-westeurope
+          secret-name: subje-secret
 
       # Image pull from ACR
       - uses: azure/k8s-create-secret@v1
@@ -67,12 +69,13 @@ jobs:
           acr-username: $$ {{ secrets.ACR_USERNAME }}
           acr-password: $$ {{ secrets.ACR_PASSWORD }}
           namespace: default
-          secret-name: wagtail-secret
+          secret-name: subje-secret
+
       - uses: azure/k8s-deploy@v1
         with:
           namespace: default
           imagepullsecrets: |
-            wagtail-secret
+            subje-secret
   # # Build and test
   # - name: Build the Docker image and test http
   #   # run: docker build . --file Dockerfile --tag wagtail-playground:$(date +%s)
