@@ -43,8 +43,8 @@ jobs:
             wagtail-secret
       # Docker build and push to a Azure Container registry (ACR)
       - run: |
-          docker build -t wagtailtest.azurecr.io/wagtail-playground:${{ github.run_id }} .
-          docker push wagtailtest.azurecr.io/wagtail-playground:${{ github.run_id }}
+          docker build -t wagtailtest.azurecr.io/wagtail-app:${{ github.run_id }} .
+          docker push wagtailtest.azurecr.io/wagtail-app:${{ github.run_id }}
 
   #Deploy on Azure K8s
   dev:
