@@ -38,7 +38,7 @@ spec:
       imagePullSecrets:
         - name: subje-client-secret
       containers:
-        - image: subjeCR.azurecr.io/wagtail-app:${{ github.run_id }}
+        - image: azurecr.azurecr.io/wagtail-app:${{ github.run_id }}
           name: wagtail-ga-container
           resources:
             requests:

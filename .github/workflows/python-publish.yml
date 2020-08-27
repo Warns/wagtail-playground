@@ -36,14 +36,14 @@ jobs:
       - name: Azure Container registry
         uses: azure/docker-login@v1
         with:
-          login-server: subjeCR.azurecr.io
+          login-server: subjecr.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
       # Docker build and push to a Azure Container registry (ACR)
       - run: |
-          docker build -t subjeCR.azurecr.io/wagtail-app:${{ github.run_id }} .
-          docker push subjeCR.azurecr.io/wagtail-app:${{ github.run_id }}
+          docker build -t subjecr.azurecr.io/wagtail-app:${{ github.run_id }} .
+          docker push subjecr.azurecr.io/wagtail-app:${{ github.run_id }}
 
   #Deploy on Azure K8s
   dev:
@@ -61,7 +61,7 @@ jobs:
       # Image pull from ACR.
       - uses: azure/k8s-create-secret@v1
         with:
-          container-registry-url: subjeCR.azurecr.io
+          container-registry-url: subjecr.azurecr.io
           container-registry-username: $$ {{ secrets.ACR_USERNAME }}
           container-registry-password: $$ {{ secrets.ACR_PASSWORD }}
           secret-name: subje-client-secret
