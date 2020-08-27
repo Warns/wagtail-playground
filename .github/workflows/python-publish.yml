@@ -52,7 +52,7 @@ jobs:
     #   - deploy-to-acr
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - uses: azure/aks-set-context@v1
         with:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
@@ -69,7 +69,7 @@ jobs:
       - uses: azure/k8s-deploy@v1
         with:
           manifests: |
-            ../../kubernetes/deployment.yml
+            kubernetes/deployment.yml
           images: |
             subjeCR.azurecr.io/wagtail-app:${{ github.run_id }}
           imagepullsecrets: |
