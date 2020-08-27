@@ -27,7 +27,7 @@ spec:
   template:
     metadata:
       labels:
-        name: wagtail-app
+        app: wagtail-app
     spec:
       imagePullSecrets:
         - name: subje-client-secret
