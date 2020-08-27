@@ -46,9 +46,9 @@ jobs:
           docker push subjeCR.azurecr.io/wagtail-app:${{ github.run_id }}
   #Deploy on Azure K8s
   dev:
-    needs:
-      - build
-      - deploy-to-acr
+    # needs:
+    #   - build
+    #   - deploy-to-acr
     runs-on: ubuntu-latest
     steps:
       # - uses: actions/checkout@v2
