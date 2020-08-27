@@ -36,14 +36,14 @@ jobs:
       - name: Azure Container registry
         uses: azure/docker-login@v1
         with:
-          login-server: wagtailtest.azurecr.io
+          login-server: subjeCR.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
       # Docker build and push to a Azure Container registry (ACR)
       - run: |
-          docker build -t wagtailtest.azurecr.io/wagtail-app:${{ github.run_id }} .
-          docker push wagtailtest.azurecr.io/wagtail-app:${{ github.run_id }}
+          docker build -t subjeCR.azurecr.io/wagtail-app:${{ github.run_id }} .
+          docker push subjeCR.azurecr.io/wagtail-app:${{ github.run_id }}
 
   #Deploy on Azure K8s
   dev:
@@ -57,13 +57,13 @@ jobs:
         with:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
           cluster-name: subje-playground
-          resource-group: cloud-shell-storage-westeurope
+          resource-group: subje-rg
           secret-name: subje-client-secret
       # Image pull from ACR.
       - uses: azure/k8s-create-secret@v1
         with:
           namespace: default
-          container-registry-url: wagtailtest.azurecr.io
+          container-registry-url: subjeCR.azurecr.io
           container-registry-username: $$ {{ secrets.ACR_USERNAME }}
           container-registry-password: $$ {{ secrets.ACR_PASSWORD }}
           secret-name: subje-client-secret
@@ -74,7 +74,7 @@ jobs:
           manifests: |
             kubernetes/deployment.yml
           images: |
-            wagtailtest.azurecr.io/k8smaven:${{ github.run_id }}
+            subjeCR.azurecr.io/k8smaven:${{ github.run_id }}
           imagepullsecrets: |
             subje-client-secret
   # # Build and test
