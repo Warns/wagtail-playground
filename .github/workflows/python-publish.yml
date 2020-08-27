@@ -61,10 +61,10 @@ jobs:
       # Image pull from ACR.
       - uses: azure/k8s-create-secret@v1
         with:
-          container-registry-url: wagtailtest.azurecr.io
-          acr-username: $$ {{ secrets.ACR_USERNAME }}
-          acr-password: $$ {{ secrets.ACR_PASSWORD }}
           namespace: default
+          container-registry-url: wagtailtest.azurecr.io
+          container-registry-username: $$ {{ secrets.ACR_USERNAME }}
+          container-registry-password: $$ {{ secrets.ACR_PASSWORD }}
           secret-name: subje-client-secret
       # Deploy to AKS
       - uses: azure/k8s-deploy@v1
