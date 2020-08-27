@@ -12,7 +12,7 @@
 #     - name: http
 #       port: 8000
 #       targetPort: 8000
-apiVersion: apps/v1
+apiVersion: v1
 kind: Deployment
 metadata:
   name: wagtail-deploy
@@ -20,11 +20,11 @@ metadata:
   labels:
     name: wagtail-app
 spec:
-  # type: LoadBalancer
-  # ports:
-  #   - name: http
-  #     port: 8000
-  #     targetPort: 8000
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
 
   replicas: 1
   selector:
@@ -38,7 +38,7 @@ spec:
       imagePullSecrets:
         - name: subje-client-secret
       containers:
-        - image: azurecr.azurecr.io/wagtail-app:${{ github.run_id }}
+        - image: azurecr.azurecr.io/wagtail-app:0.0.1.RELEASE
           name: wagtail-ga-container
           resources:
             requests:
