@@ -69,7 +69,7 @@ jobs:
       - uses: azure/k8s-deploy@v1
         with:
           manifests: |
-            kubernetes/deployment.yml
+            ../../kubernetes/deployment.yml
           images: |
             subjeCR.azurecr.io/wagtail-app:${{ github.run_id }}
           imagepullsecrets: |
