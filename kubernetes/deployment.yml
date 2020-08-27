@@ -38,7 +38,7 @@ spec:
         - name: subje-client-secret
       containers:
         - image: subjeCR.azurecr.io/wagtail-app:${{ github.run_id }}
-          name: wagtail-GA-container
+          name: wagtail-ga-container
           resources:
             requests:
               cpu: "20m"
