@@ -10,26 +10,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.x"
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install setuptools wheel twine
-      - name: Build and publish to pypi.org
-        env:
-          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
-        run: |
-          python setup.py sdist
+    #   steps:
+    #     - uses: actions/checkout@v2
+    #     - name: Set up Python
+    #       uses: actions/setup-python@v2
+    #       with:
+    #         python-version: "3.x"
+    #     - name: Install dependencies
+    #       run: |
+    #         python -m pip install --upgrade pip
+    #         pip install setuptools wheel twine
+    #     - name: Build and publish to pypi.org
+    #       env:
+    #         TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+    #         TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+    #       run: |
+    #         python setup.py sdist
 
-  # ACR Login
-  deploy-to-acr:
-    runs-on: ubuntu-latest
+    # # ACR Login
+    # deploy-to-acr:
+    #   runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -51,7 +51,7 @@ jobs:
       - deploy-to-acr
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      # - uses: actions/checkout@v2
       - uses: azure/aks-set-context@v1
         with:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
@@ -60,7 +60,6 @@ jobs:
       # Image pull from ACR.
       - uses: azure/k8s-create-secret@v1
         with:
-          namespace: default
           container-registry-url: subjeCR.azurecr.io
           container-registry-username: $$ {{ secrets.ACR_USERNAME }}
           container-registry-password: $$ {{ secrets.ACR_PASSWORD }}
@@ -68,7 +67,6 @@ jobs:
       # Deploy to AKS
       - uses: azure/k8s-deploy@v1
         with:
-          namespace: default
           manifests: |
             kubernetes/deployment.yml
           images: |
