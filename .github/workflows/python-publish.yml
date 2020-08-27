@@ -65,6 +65,7 @@ jobs:
           container-registry-username: $$ {{ secrets.ACR_USERNAME }}
           container-registry-password: $$ {{ secrets.ACR_PASSWORD }}
           secret-name: subje-client-secret
+
       # Deploy to AKS
       - uses: azure/k8s-deploy@v1
         with:
