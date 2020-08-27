@@ -75,6 +75,7 @@ jobs:
             subjeCR.azurecr.io/wagtail-app:${{ github.run_id }}
           imagepullsecrets: |
             subje-client-secret
+          kubectl-version: "latest"
   # # Build and test
   # - name: Build the Docker image and test http
   #   # run: docker build . --file Dockerfile --tag wagtail-playground:$(date +%s)
