@@ -41,8 +41,11 @@ spec:
           name: wagtail-ga-container
           resources:
             requests:
-              cpu: "20m"
-              memory: "55Mi"
+              cpu: "200m"
+              memory: "32Mi"
+            limits:
+              memory: "64mi"
+              cpu: "250m"
           env:
             - name: testEnv
               value: testEnv
