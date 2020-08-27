@@ -44,7 +44,6 @@ jobs:
       - run: |
           docker build -t subjeCR.azurecr.io/wagtail-app:${{ github.run_id }} .
           docker push subjeCR.azurecr.io/wagtail-app:${{ github.run_id }}
-
   #Deploy on Azure K8s
   dev:
     needs:
