@@ -11,8 +11,6 @@ spec:
     - name: http
       port: 8000
       targetPort: 8000
-  selector:
-    name: wagtail-app
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -23,6 +21,8 @@ metadata:
     name: wagtail-app
 spec:
   replicas: 1
+  selector:
+    name: wagtail-app
   template:
     metadata:
       labels:
