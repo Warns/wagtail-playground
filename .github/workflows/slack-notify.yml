@@ -1,13 +1,19 @@
-on: pull_request
-name: Slack Notification
+name: Status Notification
+
+on: push
 jobs:
   slackNotification:
     name: Slack Notification
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@master
+      - name: Slack Success
+        if: always()
+      - uses: rtCamp/action-slack-notify@master
+      - uses: kpritam/slack-job-status-action@v1
+        with:
+          job-status: ${{ job.status }}
+          channel: playground
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_COLOR: "#320078"

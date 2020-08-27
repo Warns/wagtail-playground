@@ -43,9 +43,6 @@ spec:
             requests:
               cpu: "200m"
               memory: "32Mi"
-            limits:
-              memory: "64mi"
-              cpu: "250m"
           env:
             - name: testEnv
               value: testEnv
