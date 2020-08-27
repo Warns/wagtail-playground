@@ -11,5 +11,5 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_COLOR: "#320078"
-          SLACK_MESSAGE: "Ready to fly :rocket: Build complete! successfully pushed to wagtailtest.azurecr.io/wagtail-playground:${{ github.run_id }}"
-          SLACK_TITLE: Build
+          SLACK_MESSAGE: "Ready to fly :rocket: Build complete! successfully pushed to subjeCR.azurecr.io/wagtail-app:${{ github.run_id }} and deployed on Kubernetes Cluster."
+          SLACK_TITLE: Build & Deploy to K8s

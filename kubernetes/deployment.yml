@@ -22,7 +22,8 @@ metadata:
 spec:
   replicas: 1
   selector:
-    name: wagtail-app
+    matchLabels:
+      app: wagtail-app
   template:
     metadata:
       labels:
