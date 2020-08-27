@@ -47,8 +47,8 @@ jobs:
 
   #Deploy on Azure K8s
   dev:
-    # needs:
-    #   - build
+    needs:
+      - build
     #   - deploy-to-acr
     runs-on: ubuntu-latest
     steps:
