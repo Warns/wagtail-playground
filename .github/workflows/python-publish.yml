@@ -72,7 +72,7 @@ jobs:
           manifests: |
             kubernetes/deployment.yml
           images: |
-            subjeCR.azurecr.io/k8smaven:${{ github.run_id }}
+            subjeCR.azurecr.io/wagtail-app:${{ github.run_id }}
           imagepullsecrets: |
             subje-client-secret
   # # Build and test
