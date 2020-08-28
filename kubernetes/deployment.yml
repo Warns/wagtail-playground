@@ -36,9 +36,9 @@ spec:
         app: wagtail-app
     spec:
       imagePullSecrets:
-        - name: subje-client-secret
+        - name: rbac
       containers:
-        - image: azurecr.azurecr.io/wagtail-app:0.0.2.RELEASE
+        - image: azurecr.azurecr.io/wagtail-app:0.0.3.RELEASE
           name: wagtail-ga-container
           resources:
             requests:

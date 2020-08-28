@@ -42,8 +42,8 @@ jobs:
 
       # Docker build and push to a Azure Container registry (ACR)
       - run: |
-          docker build -t subjecr.azurecr.io/wagtail-app:0.0.2.RELEASE .
-          docker push subjecr.azurecr.io/wagtail-app:0.0.2.RELEASE
+          docker build -t subjecr.azurecr.io/wagtail-app:0.0.3.RELEASE .
+          docker push subjecr.azurecr.io/wagtail-app:0.0.3.RELEASE
   #          docker build -t subjecr.azurecr.io/wagtail-app:${{ github.run_id }} .
   #          docker push subjecr.azurecr.io/wagtail-app:${{ github.run_id }}
 
