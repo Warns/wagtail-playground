@@ -19,7 +19,7 @@ metadata:
   namespace: default
   labels:
     name: wagtail-app
-  # spec:
+spec:
   #   type: LoadBalancer
   #   ports:
   #     - name: http
